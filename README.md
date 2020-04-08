@@ -18,7 +18,8 @@ At first I had a lot of issues with my deployment. My hpfeeds-broker had a FATAL
 With my new deployment I tried to deploy a Glastopf honeypot, but for some reason it does not display on the Sensors page so any attacks on it do not get displayed. I have chosen to simply omit this honeypot from my submission.
   
 ### Summary of Collected Data
-I got a lot of attacks very quickly after my honeypots were deployed. The Dionaea honeypot is overwhelmingly the most attacked honeypot with the next honeypot, p0f, having **<2%** the amount of attacks the Dionaea honeypot does. The list drops of significantly form here with the last honey pot, ElasticHoney, having only **7** attacks.
+I got a lot of attacks very quickly after my honeypots were deployed. The Dionaea honeypot is overwhelmingly the most attacked honeypot with the next honeypot, p0f, having **<2%** the amount of attacks the Dionaea honeypot does. The list drops of significantly form here with the last honey pot, ElasticHoney, having only **7** attacks.  
+  
 **Honeypots Ranked by Number of Attacks:**
   1. dionaea (576,551 attacks)
   2. p0f (10,375 attacks)
@@ -28,6 +29,7 @@ I got a lot of attacks very quickly after my honeypots were deployed. The Dionae
   6. elastichoney (7 attacks)
     
 At first, many of the attacks displayed came from my nmap on the Dionaea honeypot but over time others surpassed my attacks. I received a total of **605,871** attacks with a max ~605,000 in 24 hrs.  
+  
 **The Top 5 Attackers are (approx. at time of data export):**
   1.  37.147.42.77 (65,169 attacks) - 
   2.  89.25.118.100 (56,774 attacks) - Botevgrad, Bulgaria
@@ -36,10 +38,10 @@ At first, many of the attacks displayed came from my nmap on the Dionaea honeypo
   5.  213.129.54.146 (50,359 attacks) - 
   
 While only **[x]** countries are represented in the top attacker rankings, attacks came from numerous countries around the world. this can be seen by the incoming attacks my honeypots were receiving on the honeymap.  
-![](Honeymap.jpg)  
+![](HoneyMap.PNG)  
 
-All attackers on the list achieved their ranking by attacking the Dionaea honeypot, which got a significantly higher amount of attacks than the others, making up **>97%** of the total attacks.
-
+All attackers on the list achieved their ranking by attacking the Dionaea honeypot, which got a significantly higher amount of attacks than the others, making up **>97%** of the total attacks.  
+  
 **The Top Attacked Ports were:**
   1. 1433 (571,821 times)
   2. 80 (4,439 times)
@@ -73,4 +75,5 @@ They are:
 ### Unresolved Questions Raised by Collected Data
 
 I don't understand why the Dionaea honeypot is the most attacked honeypot between all the ones I deployed. Considering the pattern, and it being the honeypot we were required to deploy it is probably the most attacked honeypot of all the MHN supported sensors. I tried to read up on what about Dionaea makes this the case, but found no results. Articles regarding honeypots corroborated my findings with Dionaea being their most attacked honeypot as well.  
+  
 I also want to know what the attackers are attempting to gain from attacking vulnerable systems. I'm sure there are plenty of nefarious individuals out there, but I can't help but wonder exactly what kind of data they expect to find and if any of the attackers are state sponsored entities.  
