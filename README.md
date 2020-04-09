@@ -44,7 +44,13 @@ At first, many of the attacks displayed came from my nmap on the Dionaea honeypo
   5.  213.129.54.146 (50,359 attacks) - Yakutsk, Russia
   
 While only **4** countries are represented in the top attacker rankings, attacks came from numerous countries around the world. this can be seen by the incoming attacks my honeypots were receiving on the honeymap.  
+
 ![](HoneyMap.PNG)  
+  
+
+MHN also generated data from the Cowrie attacks which can be seen here:  
+  
+![](CowrieInfo.PNG)
 
 All attackers on the list achieved their ranking by attacking the Dionaea honeypot, which got a significantly higher amount of attacks than the others, making up **>93%** of the total attacks.  
   
