@@ -3,6 +3,8 @@ Which Honeypot(s) you deployed
 Any issues you encountered  
 A summary of the data collected: number of attacks, number of malware samples, etc.  
 Any unresolved questions raised by the data collected  
+  
+**Note:** The session.json file in the GitHub has been modified so that it is **<50%** the size of the actual file. This has been done in order to be able to upload the file to GitHub. If you would like the complete session.json file, it is available for download here: https://drive.google.com/open?id=1ayCTZhdmTj6Ggk0aeqZ2fxKoMxRB01YH  
 
 ### Deployed Honeypots
 The honeypots I deployed were:
