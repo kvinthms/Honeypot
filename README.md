@@ -18,36 +18,40 @@ At first I had a lot of issues with my deployment. My hpfeeds-broker had a FATAL
 With my new deployment I tried to deploy a Glastopf honeypot, but for some reason it does not display on the Sensors page so any attacks on it do not get displayed. I have chosen to simply omit this honeypot from my submission.
   
 ### Summary of Collected Data
-I got a lot of attacks very quickly after my honeypots were deployed. The Dionaea honeypot is overwhelmingly the most attacked honeypot with the next honeypot, p0f, having **<2%** the amount of attacks the Dionaea honeypot does. The list drops of significantly form here with the last honey pot, ElasticHoney, having only **7** attacks.  
+I got a lot of attacks very quickly after my honeypots were deployed. The Dionaea honeypot is overwhelmingly the most attacked honeypot with the next honeypot, p0f, having **<4%** the amount of attacks the Dionaea honeypot does. The list drops of significantly form here with the last honey pot, ElasticHoney, having only **36** attacks.
+
+**Total Attacks Recieved:** 623,452
+
+**Most Attacks in 24 Hrs:** 604,680
   
 **Honeypots Ranked by Number of Attacks:**
-  1. dionaea (576,551 attacks)
-  2. p0f (10,375 attacks)
-  3. amun (2,014 attacks)
-  4. conpot (1,069 attacks)
-  5. cowrie (35 attacks)
-  6. elastichoney (7 attacks)
+  1. dionaea (591,471 attacks)
+  2. p0f (23,046 attacks)
+  3. amun (7,245 attacks)
+  4. conpot (1,247 attacks)
+  5. cowrie (407 attacks)
+  6. elastichoney (36 attacks)
     
-At first, many of the attacks displayed came from my nmap on the Dionaea honeypot but over time others surpassed my attacks. I received a total of **605,871** attacks with a max ~605,000 in 24 hrs.  
+At first, many of the attacks displayed came from my nmap on the Dionaea honeypot but over time others surpassed my attacks. The most attacks occurred within the 24 hrs immediately following the deployment of the honeypots.
   
-**The Top 5 Attackers are (approx. at time of data export):**
-  1.  37.147.42.77 (65,169 attacks) - 
-  2.  89.25.118.100 (56,774 attacks) - Botevgrad, Bulgaria
-  3.  200.35.77.146 (53,535 attacks) - Bachaquero (Cabemas?), Venezuela
-  4.  121.20.47.240 (50,599 attacks) - 
-  5.  213.129.54.146 (50,359 attacks) - 
+**The Top 5 Attacker IPs:**
+  1.  37.147.42.77 (65,169 attacks) - Krasnodar, Russia
+  2.  89.25.118.100 (64,660 attacks) - Botevgrad, Bulgaria
+  3.  200.35.77.146 (55,631 attacks) - Bachaquero (Cabemas?), Venezuela Agua Salada
+  4.  121.20.47.240 (50,600 attacks) - Zhengzhou, China
+  5.  213.129.54.146 (50,359 attacks) - Yakutsk, Russia
   
 While only **[x]** countries are represented in the top attacker rankings, attacks came from numerous countries around the world. this can be seen by the incoming attacks my honeypots were receiving on the honeymap.  
 ![](HoneyMap.PNG)  
 
 All attackers on the list achieved their ranking by attacking the Dionaea honeypot, which got a significantly higher amount of attacks than the others, making up **>97%** of the total attacks.  
   
-**The Top Attacked Ports were:**
-  1. 1433 (571,821 times)
-  2. 80 (4,439 times)
-  3. 445 (3,282 times)
-  4. 22 (2,388 times)
-  5. 502 (1,078 times)
+**The Top 5 Attacked Ports:**
+  1. 1433 (58,2075 times)
+  2. 80 (10,067 times)
+  3. 445 (6,580 times)
+  4. 22 (6,392 times)
+  5. 23 (1,417 times)
   
   1433 - TCP/Udp Wideopen Firewall rule
   80 - HTTP firewall rule
@@ -75,5 +79,26 @@ They are:
 ### Unresolved Questions Raised by Collected Data
 
 I don't understand why the Dionaea honeypot is the most attacked honeypot between all the ones I deployed. Considering the pattern, and it being the honeypot we were required to deploy it is probably the most attacked honeypot of all the MHN supported sensors. I tried to read up on what about Dionaea makes this the case, but found no results. Articles regarding honeypots corroborated my findings with Dionaea being their most attacked honeypot as well.  
+
+The highest frequency of attacks happened within the first 24hrs after deploying the honeypots with traffic dropping off substantially to around **~2.5%** of its peak. While my honeypots are still recieving traffic, I did not expect such a large dropoff and am curious as to how and why this occurred. I guess attackers have recorded my honeypots as already explored, but the highest attacker IPs still send some attacks to my honeypots every once in a while.  
   
 I also want to know what the attackers are attempting to gain from attacking vulnerable systems. I'm sure there are plenty of nefarious individuals out there, but I can't help but wonder exactly what kind of data they expect to find and if any of the attackers are state sponsored entities.  
+  
+### Notes  
+Parse.py can be used in order to analyze the session.json file generated from mhn-admin. This file should work for any .json file obtained from MHN. The records can be obtained using:  
+```  
+mongoexport --db mnemosyne --collection session > session.json  
+gcloud compute scp mhn-admin:~/session.json ./session.json  
+```  
+Before using the Parse.py to analyze session.json, **2** steps must be taken:  
+  1. Add a **\[** to the beginning of session.json, and a **\]** to the end of session.json  
+  2. Add a **,** to the end of every line in between *except* the very last line before **\]**  
+     This can be done by a Find+Replace operation on the file matching on the regex pattern **}$** and replacing with **},**  
+     
+**WARNING:** Performing Step 2. can be a very memory intensive operation for some programs and may require an adjustment of memory thresholds if done in an IDE. For example: if using PyCharm, it is necessary to set *idea.max.content.load.filesize* to >200000 (>200 MB) in order to write to the file.
+     
+output.csv contains the protocol, timestamp\[$date\], source_ip, destination_port, and honeypot for each attack in that order
+ipAnalysis.txt contains the attacker IPs with their attack count in descending order in the form ip: count
+portAnalysis.txt contains the attacked ports with their attack count in descending order in the form port: count  
+  
+ip.txt, port.txt, and time.txt contain the extracted IP, port, and timestamp\[$date\] respectively for each record as a list. These created files are used to obtain the final statistics.  
