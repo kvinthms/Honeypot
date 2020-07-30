@@ -1,8 +1,4 @@
 # Honeypot
-Which Honeypot(s) you deployed  
-Any issues you encountered  
-A summary of the data collected: number of attacks, number of malware samples, etc.  
-Any unresolved questions raised by the data collected  
   
 **Note:** The session.json file in the GitHub has been modified so that it is **<50%** the size of the actual file. This has been done in order to be able to upload the file to GitHub. If you would like the complete session.json file, it is available for download here: https://drive.google.com/open?id=1ayCTZhdmTj6Ggk0aeqZ2fxKoMxRB01YH  
 
@@ -16,8 +12,7 @@ The honeypots I deployed were:
   * p0f
   
 ### Issues Encountered
-At first I had a lot of issues with my deployment. My hpfeeds-broker had a FATAL error and my supervisorctl would not run, causing my honeypots to not transmit any data to mhn-admin. I attempted to resolve this issue by following many of the threads in the MHN GitHub issues page and MHN Google Forum containing relevant topics. Eventually I decided to do a clean reinstall of the entire system which got everything working.  
-With my new deployment I tried to deploy a Glastopf honeypot, but for some reason it does not display on the Sensors page so any attacks on it do not get displayed. I have chosen to simply omit this honeypot from my submission.
+With my deployment I tried to deploy a Glastopf honeypot, but for some reason it does not display on the Sensors page so any attacks on it do not get displayed. I have chosen to simply omit this honeypot.
   
 ### Summary of Collected Data
 I got a lot of attacks very quickly after my honeypots were deployed. The Dionaea honeypot is overwhelmingly the most attacked honeypot with the next honeypot, p0f, having **<5%** the amount of attacks the Dionaea honeypot does. The list drops of significantly form here with the last honey pot, ElasticHoney, having only **43** attacks.
@@ -61,8 +56,8 @@ All attackers on the list achieved their ranking by attacking the Dionaea honeyp
   4. 22 (6,392 times) - SSH
   5. 23 (1,417 times) - TCP  
   
-#### Bonus Malware Samples
-I received **13** dionaea.capture payloads, which I believe is the malware samples that were wanted as bonus points.
+#### Malware Samples
+I received **13** dionaea.capture payloads
 They are:
   url | daddr | saddr | dport | sport | sha512 | md5
   --- | ----- | ----- | ----- | ----- | ------ | ---
